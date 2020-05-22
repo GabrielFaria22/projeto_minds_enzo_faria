@@ -1,0 +1,53 @@
+
+<%= link_to 'Pagina inicial', pages_home_path %>
+
+<br><br>
+<p>
+  <strong>Name:</strong>
+  <%= @assisted.name %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @assisted.gender %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @assisted.address %>
+</p>
+
+<p>
+  <strong>Name mother:</strong>
+  <%= @assisted.name_mother %>
+</p>
+
+<p>
+  <strong>Name father:</strong>
+  <%= @assisted.name_father %>
+</p>
+
+<p>
+  <strong>Phone1:</strong>
+  <%= @assisted.phone1 %>
+</p>
+
+<p>
+  <strong>Phone2:</strong>
+  <%= @assisted.phone2 %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @assisted.email %>
+</p>
+
+<p>
+  <strong>Observation:</strong>
+  <%= @assisted.observation %>
+</p>
+
+<br>
+<%= link_to 'Edit', edit_assisted_path(@assisted) %>
+<br>
+<%= link_to 'Voltar', assisteds_path %>

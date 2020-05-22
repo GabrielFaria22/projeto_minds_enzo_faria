@@ -1,0 +1,62 @@
+<%= form_with(model: assisted, local: true) do |form| %>
+  <% if assisted.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(assisted.errors.count, "error") %> prohibited this assisted from being saved:</h2>
+
+      <ul>
+      <% assisted.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.check_box :gender %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_mother %>
+    <%= form.text_field :name_mother %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_father %>
+    <%= form.text_field :name_father %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone1 %>
+    <%= form.number_field :phone1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone2 %>
+    <%= form.number_field :phone2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :observation %>
+    <%= form.text_area :observation %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

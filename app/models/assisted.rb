@@ -1,0 +1,2 @@
+class Assisted < ApplicationRecord
+end
