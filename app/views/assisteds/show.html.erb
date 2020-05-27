@@ -48,6 +48,8 @@
 </p>
 
 <br>
+<%= link_to 'novo post', new_post_path(assisted_id: @assisted.id) %>
+<br>
 <%= link_to 'Edit', edit_assisted_path(@assisted) %>
 <br>
 <%= link_to 'Voltar', assisteds_path %>

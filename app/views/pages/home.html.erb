@@ -1,15 +1,13 @@
 <h1>Pages#home</h1>
 
-
 <% if current_user %>
-  <%= link_to 'Buscar usuário da assistência', assisteds_path %>
-  <br>
-  <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-  <br>
-  <%= link_to 'Posts', posts_path %>
+<%= link_to 'sair', destroy_user_session_path, method: :delete %>
+
+<br>
+
+<%= link_to 'posts', posts_path %>
 <% else %>
-  <%= link_to 'Cadastrar', new_user_registration_path %>
-  <br>
-  <%= link_to 'Entrar', new_user_session_path %>
-  <br>
+
+<%= link_to 'cadastrar', new_user_registration_path %>
+<%= link_to 'login', new_user_session_path %>
 <% end %>
