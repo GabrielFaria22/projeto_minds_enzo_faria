@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  # before_action :set_assisted, only: :new
   # before_action :set_assisted
   # GET /posts
   # GET /posts.json
@@ -16,8 +17,14 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
-    @post.assisted_id = params[:assisted_id]
     @post.user = current_user
+    @post.assisted_id = params[:assisted_id]
+    # @post.assisted = @assisted //erroaq
+    puts "ASDFGHGFDSDFGHGFDSDFGHGFDFGHGF"
+    puts @assisted.inspect
+    puts "ASDFGHGFDSDFGHGFDSDFGHGFDFGHGF"
+    puts @post.inspect
+    puts "ASDFGHGFDSDFGHGFDSDFGHGFDFGHGF"
   end
 
   # GET /posts/1/edit
@@ -27,12 +34,12 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    puts "EEEEEEEEEEEEEEEEEEEEEEEEEE"
+    puts post_params
+    puts "EEEEEEEEEEEEEEEEEEEEEEEEEE"
     @post = Post.new(post_params)
-    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    puts @post.inspect
-    puts @assisted
     @post.user = current_user
-    @assisted = Assisted.where(id: params[:assisted_id])
+    @post.assisted_id = params[:assisted_id]
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -75,7 +82,7 @@ class PostsController < ApplicationController
     end
 
     def set_assisted
-      @assisted = Assisted.where(id: params[:assisted_id])
+      @post.assisted = Assisted.where(id: params[:assisted_id])
     end
 
     # Only allow a list of trusted parameters through.

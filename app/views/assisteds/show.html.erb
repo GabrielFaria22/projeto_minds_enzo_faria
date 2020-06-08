@@ -47,6 +47,21 @@
   <%= @assisted.observation %>
 </p>
 
+<% if @assisted.posts.any? %>
+  <%= @assisted.posts.each do |post| %>
+    <div>
+      <%= post.user.username %> ID <%= post.user.id %>
+      Criado em <%= post.created_at %>
+      <br><%= post.title %>
+      <%= simple_format(post.body) %>
+    </div>
+  <% end %>
+<% else %>
+  <p>Sem registros</p>
+<% end %>
+
+
+
 <br>
 <%= link_to 'novo post', new_post_path(assisted_id: @assisted.id) %>
 <br>
