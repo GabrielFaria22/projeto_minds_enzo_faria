@@ -20,11 +20,6 @@ class PostsController < ApplicationController
     @post.user = current_user
     @post.assisted_id = params[:assisted_id]
     # @post.assisted = @assisted //erroaq
-    puts "ASDFGHGFDSDFGHGFDSDFGHGFDFGHGF"
-    puts @assisted.inspect
-    puts "ASDFGHGFDSDFGHGFDSDFGHGFDFGHGF"
-    puts @post.inspect
-    puts "ASDFGHGFDSDFGHGFDSDFGHGFDFGHGF"
   end
 
   # GET /posts/1/edit
@@ -34,9 +29,6 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    puts "EEEEEEEEEEEEEEEEEEEEEEEEEE"
-    puts post_params
-    puts "EEEEEEEEEEEEEEEEEEEEEEEEEE"
     @post = Post.new(post_params)
     @post.user = current_user
     @post.assisted_id = params[:assisted_id]

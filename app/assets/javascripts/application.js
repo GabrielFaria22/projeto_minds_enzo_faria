@@ -16,4 +16,12 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require jquery_ujs
+//= require material/bootstrap-material-design.min
+//= require material/perfect-scrollbar.jquery.min
+//= require material/chartist.min
+//= require material/arrive.min
+//= require material/bootstrap-notify
+//= require material/material-dashboard
+//= require material/demo
 //= require_tree .
