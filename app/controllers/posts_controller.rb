@@ -17,6 +17,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    puts "aaaaaaa"
     @post.user = current_user
     @post.assisted_id = params[:assisted_id]
     # @post.assisted = @assisted //erroaq
@@ -30,8 +31,6 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-    @post.user = current_user
-    @post.assisted_id = params[:assisted_id]
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -79,6 +78,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body, :assisted_id)
+      params.require(:post).permit(:title, :body, :assisted_id, :user_id)
     end
 end
