@@ -32,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'popper_js', '~> 1.16.0'
 
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 # Use ActiveStorage variant
