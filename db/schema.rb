@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2020_05_27_184332) do
     t.string "address"
     t.string "name_mother"
     t.string "name_father"
+    t.string "cpf", default: "", null: false
+    t.boolean "status", default: true, null: false
     t.integer "phone1"
     t.integer "phone2"
     t.string "email"

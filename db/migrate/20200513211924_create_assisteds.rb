@@ -6,6 +6,8 @@ class CreateAssisteds < ActiveRecord::Migration[5.2]
       t.string :address
       t.string :name_mother
       t.string :name_father
+      t.string :cpf, null: false, default: ""
+      t.boolean :status, null: false, default: true
       t.integer :phone1
       t.integer :phone2
       t.string :email

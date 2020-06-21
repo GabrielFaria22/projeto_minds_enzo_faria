@@ -89,6 +89,20 @@
               <td><%= @assisted.name_father %></td>
             </tr>
             <tr>
+              <th>CPF</th>
+              <td><%= @assisted.cpf %></td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td>
+                <% if @assisted.status %>
+                  Ativo
+                <% else %>
+                  Inativo
+                <% end %>
+              </td>
+            </tr>
+            <tr>
               <th>Telefone 1</th>
               <td><%= @assisted.phone1 %></td>
             </tr>
