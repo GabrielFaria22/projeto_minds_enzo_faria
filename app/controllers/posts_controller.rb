@@ -5,8 +5,27 @@ class PostsController < ApplicationController
   # before_action :set_assisted
   # GET /posts
   # GET /posts.json
+
+
+  # def index
+  #   @posts = Post.all
+  # end
+
   def index
-    @posts = Post.all
+    if params[:commit] == 'Search'
+      if params[:search] == "Assistente"
+        @posts = Post.where(user_id: params['input'])
+      elsif params[:search] == 'Título'
+        @posts = Post.where("title LIKE ?", "%" + params['input'] + "%")
+      elsif params[:search] == 'Conteúdo'
+        @posts = Post.where("body LIKE ?", "%" + params['input'] + "%")
+      end
+      if @posts.blank?
+        flash[:error] = "Nada foi encontrado."
+      else
+        flash[:notice] = "Busca realizada com sucesso."
+      end
+    end
   end
 
   # GET /posts/1
@@ -17,7 +36,6 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
-    puts "aaaaaaa"
     @post.user = current_user
     @post.assisted_id = params[:assisted_id]
     # @post.assisted = @assisted //erroaq

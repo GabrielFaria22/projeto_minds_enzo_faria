@@ -15245,7 +15245,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .sidebar .logo-tim {
   border-radius: 50%;
-  border: 1px solid #333;
+  border: 1px solid #811ba0!important;
   display: block;
   height: 61px;
   width: 61px;

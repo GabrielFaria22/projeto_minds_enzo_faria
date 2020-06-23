@@ -89,28 +89,31 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-group shadow-textarea">
+    <%= form.text_field :title, class: 'form-control z-depth-1', rows: '1', placeholder: 'Título' %>
   </div>
 
+  <div class="form-group shadow-textarea">
+    <%= form.text_area :body, class: 'form-control z-depth-1', rows: '3', placeholder: 'Escreva o conteúdo aqui' %>
+  </div>
+<!--
   <div class="field">
     <%= form.label :body %>
     <%= form.text_area :body %>
+  </div> -->
+
+  <div class="field">
+    <%= form.hidden_field :user_id %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :assisted_id %>
-    <%= form.text_field :assisted_id %>
+    <%= form.hidden_field :assisted_id %>
   </div>
 
   <div class="actions">
+    <button class="btn btn-primary btn-sm">
     <%= form.submit %>
+  </button>
   </div>
 <% end %>
 

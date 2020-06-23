@@ -1,0 +1,39 @@
+<body class="" style="margin:0px">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="purple">
+      <div class="logo">
+        <%= link_to 'Minds', pages_home_path, class: 'simple-text logo-normal' %>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item ">
+            <%= link_to assisteds_path, class: 'nav-link' do %>
+              <i class="material-icons">person</i>
+              <p>Buscar usuário</p>
+            <% end %>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <%= link_to new_assisted_path, class: 'nav-link' do %>
+              <i class="material-icons">person_add</i>
+              <p>Cadastrar novo usuário</p>
+            <% end %>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <%= link_to posts_path, class: 'nav-link' do %>
+              <i class="material-icons">library_books</i>
+              <p>Lista de Registros</p>
+            <% end %>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
+              <i class="material-icons"></i>
+              <p>Sair</p>
+            <% end %>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>

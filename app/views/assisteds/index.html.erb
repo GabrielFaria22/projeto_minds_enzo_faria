@@ -10,131 +10,82 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Pagina inicial', pages_home_path %>
-
-<body class="" style="margin:0px">
-  <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
 
 
-
-      <div class="logo"><%= link_to 'Minds', pages_home_path, class: 'simple-text logo-normal' %>
+  <div class="main-panel">
+    <div class="jumbotron jumbotron-sm">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-lg-12">
+            <h3 class="h1"><b>Busca por usuários</b></h3>
+          </div>
         </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="nav-item ">
-            <%= link_to assisteds_path, class: 'nav-link' do %>
-              <i class="material-icons">person</i>
-              <p>Buscar usuário</p>
-            <% end %>
-            </a>
-          </li>
+      </div>
+    </div>
+    <div class="container">
+      <div class="right_bar ">
+        <div class="tab-content ">
+      		<div class="tab-pane fade show active" id="lorem" role="tabpanel">
+            <%= form_tag("/assisteds", method: "get") do %>
+                <div class="form-group">
+                  <%= label_tag(:q, "Procurar por:") %>
+                  <div class="col-md-8">
+                    <%= select_tag "search", options_for_select([ "CPF", "Nome", "Email", "Status" ], params['search']), class: "custom-select" %>
+                  </div>
+                </div>
+                <div class="form-group" id="input_search">
+                  <%= label_tag(:q, "") %>
+                  <div class="col-md-8">
+                    <%= text_field_tag :input, value = "#{params['input']}", class: 'form-control', style: 'width:50%;', placeholder: 'Insira o valor' %>
+                  </div>
+                </div>
+                <div class="form-group" id="status_seach_input">
+                  <%= label_tag(:q, "Status:") %>
+                  <div class="col-md-8">
+                    <%= select_tag "status_seach", options_for_select([ "ativo", "inativo" ], params['status_seach']), class: "custom-select" %>
+                  </div>
+                </div>
+                <%= submit_tag("Search") %>
 
-          <li class="nav-item ">
-            <%= link_to new_assisted_path, class: 'nav-link' do %>
-              <i class="material-icons">person</i>
-              <p>Cadastrar usuário</p>
+              </div>
             <% end %>
-            </a>
-          </li>
 
-          <li class="nav-item ">
-            <%= link_to posts_path, class: 'nav-link' do %>
-              <i class="material-icons">library_books</i>
-              <p>Lista de Registros</p>
-            <% end %>
-            </a>
-          </li>
+            <% if @assisteds.present? %>
 
-          <li class="nav-item ">
-            <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
-              <i class="material-icons"></i>
-              <p>Sair</p>
+              <table class="table table-hover table-sm table-properties">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Phone1</th>
+                    <th>Email</th>
+                    <th>CPF</th>
+                    <th>Status</th>
+                    <th colspan="6"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% @assisteds.each do |assisted| %>
+                  <tr>
+                    <td><%= assisted.name %></td>
+                    <td><%= assisted.gender? ? "Masculino" : "Feminino" %></td>
+                    <td><%= assisted.phone1 %></td>
+                    <td><%= assisted.email %></td>
+                    <td><%= assisted.cpf %></td>
+                    <td><%= assisted.status? ? "Ativo" : "Inativo" %></td>
+                    <td><%= link_to 'Show', assisted %></td>
+                    <td><%= link_to 'Edit', edit_assisted_path(assisted) %></td>
+                    <td><% link_to 'Destroy', assisted, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
             <% end %>
-            </a>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
 
-
-      <div class="main-panel">
-        <div class="container">
-          <div class="right_bar ">
-            <div class="tab-content ">
-          		<div class="tab-pane fade show active" id="lorem" role="tabpanel">
-                <%= form_tag("/assisteds", method: "get") do %>
-                    <div class="form-group">
-                      <%= label_tag(:q, "Search for:") %>
-                      <div class="col-md-8">
-                        <%= select_tag "search", options_for_select([ "CPF", "Nome", "Email", "Status" ], params['search']), class: "custom-select" %>
-                      </div>
-                    </div>
-                    <div class="form-group" id="input_search">
-                      <%= label_tag(:q, "Insira o valor:") %>
-                      <div class="col-md-8">
-                        <%= text_field_tag :input, value = "#{params['input']}" %>
-                      </div>
-                    </div>
-                    <div class="form-group" id="status_seach_input">
-                      <%= label_tag(:q, "Status:") %>
-                      <div class="col-md-8">
-                        <%= select_tag "status_seach", options_for_select([ "ativo", "inativo" ], params['status_seach']), class: "custom-select" %>
-                      </div>
-                    </div>
-                    <%= submit_tag("Search") %>
-
-                  </div>
-                <% end %>
-
-                <% if @assisteds.present? %>
-
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Gender</th>
-                        <th>Phone1</th>
-                        <th>Email</th>
-                        <th>CPF</th>
-                        <th>Status</th>
-                        <th colspan="6"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <% @assisteds.each do |assisted| %>
-                      <tr>
-                        <td><%= assisted.name %></td>
-                        <td><%= assisted.gender? ? "Masculino" : "Feminino" %></td>
-                        <td><%= assisted.phone1 %></td>
-                        <td><%= assisted.email %></td>
-                        <td><%= assisted.cpf %></td>
-                        <td><%= assisted.status? ? "Ativo" : "Inativo" %></td>
-                        <td><%= link_to 'Show', assisted %></td>
-                        <td><%= link_to 'Edit', edit_assisted_path(assisted) %></td>
-                        <td><% link_to 'Destroy', assisted, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                      </tr>
-                    <% end %>
-                    </tbody>
-                  </table>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-
-
-
-
-  </div>
 
 <script>
 $(document).ready(function(){
@@ -159,28 +110,6 @@ $(document).ready(function(){
   </script>
 
 </body>
-
-
-
-
-<% if current_user %>
-  <%= link_to 'Buscar usuário da assistência', assisteds_path %>
-  <br>
-  <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-  <br>
-  <%= link_to 'Posts', posts_path %>
-<% else %>
-  <%= link_to 'Cadastrar', new_user_registration_path %>
-  <br>
-  <%= link_to 'Entrar', new_user_session_path %>
-  <br>
-<% end %>
-
-
-
-
-
-
 
 <br>
 
