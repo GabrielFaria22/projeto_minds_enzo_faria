@@ -11,7 +11,9 @@
 
   <body>
     <!-- <%= render 'layouts/alerts' %> -->
+    <% if current_user %>
     <%= render 'layouts/side_menu' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

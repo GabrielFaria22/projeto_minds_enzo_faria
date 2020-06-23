@@ -1,6 +1,6 @@
 class AssistedsController < ApplicationController
   before_action :set_assisted, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /assisteds
   # GET /assisteds.json
   def index

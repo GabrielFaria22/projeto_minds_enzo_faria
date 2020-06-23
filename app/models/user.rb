@@ -7,5 +7,11 @@ class User < ApplicationRecord
   def username
     self.email.split('@')[0].capitalize
   end
-  
+
+  def posts
+    posts = []
+    posts = Post.where(user_id: self.id)
+    return posts
+  end
+
 end

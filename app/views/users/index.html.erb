@@ -1,0 +1,100 @@
+<% if params[:commit] %>
+  <% if @users.present? %>
+    <div class="alert alert-primary" role="alert">
+      This is a primary alert with <a href="#" class="alert-link">an example link</a>. Busca realizada com sucesso.
+    </div>
+  <% else %>
+    <div class="alert alert-primary" role="alert">
+      This is a primary alert with <a href="#" class="alert-link">an example link</a>. Nada foi encontrado.
+    </div>
+  <% end %>
+<% end %>
+
+<div class="main-panel">
+  <div class="jumbotron jumbotron-sm">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-lg-12">
+          <h3 class="h1"><b>Busca por assistentes</b></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="right_bar ">
+      <div class="tab-content ">
+        <div class="tab-pane fade show active" id="lorem" role="tabpanel">
+          <%= form_tag("/users", method: "get") do %>
+              <div class="form-group">
+                <%= label_tag(:q, "Procurar por:") %>
+                <div class="col-md-8">
+                  <%= select_tag "search", options_for_select([ "ID", "Email" ], params['search']), class: "custom-select" %>
+                </div>
+              </div>
+              <div class="form-group" id="input_search">
+                <%= label_tag(:q, "") %>
+                <div class="col-md-8">
+                  <%= text_field_tag :input, value = "#{params['input']}", class: 'form-control', style: 'width:50%;', placeholder: 'Insira o valor' %>
+                </div>
+              </div>
+              <%= submit_tag("Search") %>
+
+            </div>
+          <% end %>
+
+          <% if @users.present? %>
+
+            <table class="table table-hover table-sm table-properties">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td><%= user.id %></td>
+                  <td><%= user.username %></td>
+                  <td><%= user.email %></td>
+                  <td><%= link_to 'Show', user %></td>
+                  <td><%= link_to 'Edit', edit_user_path(user) %></td>
+                  <td><% link_to 'Destroy', user, method: :delete, data: { confirm: 'Tem certeza que quer excluir o usuário?' } %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script>
+$(document).ready(function(){
+var search = document.getElementById("search");
+var status_seach = document.getElementById("status_seach_input");
+var input = document.getElementById("input_search");
+$('#search').change(function(e) {
+  read();
+});
+
+function read() {
+  if (search.value == "Status") {
+      status_seach.style.display = "block";
+      input.style.display = "none";
+  } else {
+      status_seach.style.display = "none";
+      input.style.display = "block";
+  }
+}
+read();
+});
+</script>
+
+</body>
+
+<br>

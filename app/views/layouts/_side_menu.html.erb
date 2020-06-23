@@ -27,6 +27,22 @@
             <% end %>
             </a>
           </li>
+          <% if current_user.admin %>
+            <li class="nav-item ">
+              <%= link_to users_path, class: 'nav-link' do %>
+                <i class="material-icons">library_books</i>
+                <p>Lista de Assistentes</p>
+              <% end %>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <%= link_to new_user_path, class: 'nav-link' do %>
+                <i class="material-icons">library_books</i>
+                <p>Cadastrar assistente</p>
+              <% end %>
+              </a>
+            </li>
+          <% end %>
           <li class="nav-item ">
             <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
               <i class="material-icons"></i>
